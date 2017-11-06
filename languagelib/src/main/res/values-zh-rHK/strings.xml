@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LanguageLib</string>
+    <string name="setting_language_followsystem">follow system</string>
+
+</resources>
