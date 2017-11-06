@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android MultiLanguage</string>
+    <string name="introduction">Hello, I finddreams, my blog address is: http://blog.csdn.net/finddreams, hope a lot of attention!</string>
+    <string name="open_landscape">Open the screen page</string>
+    <string name="open_webview">Open the WebView page</string>
+
+</resources>
