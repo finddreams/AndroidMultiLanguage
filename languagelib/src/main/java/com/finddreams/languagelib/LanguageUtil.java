@@ -15,29 +15,30 @@ import java.util.Locale;
 
 /**
  * 多语言切换的帮助类
+ * http://blog.csdn.net/finddreams
  */
 public class LanguageUtil {
 
     private static final String TAG = "LanguageUtil";
-    private static LanguageUtil sInstacne;
+    private static LanguageUtil instance;
     private Context mContext;
     public static final String SAVE_LANGUAGE = "save_language";
 
     public static void init(Context mContext) {
-        if (sInstacne == null) {
+        if (instance == null) {
             synchronized (LanguageUtil.class) {
-                if (sInstacne == null) {
-                    sInstacne = new LanguageUtil(mContext);
+                if (instance == null) {
+                    instance = new LanguageUtil(mContext);
                 }
             }
         }
     }
 
     public static LanguageUtil getInstance() {
-        if (sInstacne == null) {
+        if (instance == null) {
             throw new IllegalStateException("You must be init LanguageUtil first");
         }
-        return sInstacne;
+        return instance;
     }
 
     private LanguageUtil(Context context) {
@@ -88,11 +89,11 @@ public class LanguageUtil {
             return Locale.TRADITIONAL_CHINESE;
         }
         Log.e(TAG, "getLanguageLocale" + languageType + languageType);
-        getSystemLangue(getSysLocale());
+        getSystemLanguage(getSysLocale());
         return Locale.SIMPLIFIED_CHINESE;
     }
 
-    private String getSystemLangue(Locale locale) {
+    private String getSystemLanguage(Locale locale) {
         return locale.getLanguage() + "_" + locale.getCountry();
 
     }

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Android多語言</string>
-    <string name="introduction">你好，我是尋夢，我的博客地址是：http://blog.csdn.net/finddreams，希望大家多多關注！ </string>
+    <string name="introduction">你好，我是尋夢，我的部落格地址是：http://blog.csdn.net/finddreams，希望大家多多關注！ </string>
     <string name="open_landscape">打開橫屏頁面</string>
     <string name="followsystem">跟隨系統</string>
     <string name="open_webview">打開webview頁面</string>
