@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 /**
  * webview在7.0上会重置语言
  */
-public class WebViewActivity extends BaseActivity {
+    public class WebViewActivity extends BaseActivity {
 
     private WebView webview;
     private ProgressBar progressbar;

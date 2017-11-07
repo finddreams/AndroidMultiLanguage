@@ -17,31 +17,31 @@ import java.util.Locale;
  * 多语言切换的帮助类
  * http://blog.csdn.net/finddreams
  */
-public class LanguageUtil {
+public class MultiLanguageUtil {
 
-    private static final String TAG = "LanguageUtil";
-    private static LanguageUtil instance;
+    private static final String TAG = "MultiLanguageUtil";
+    private static MultiLanguageUtil instance;
     private Context mContext;
     public static final String SAVE_LANGUAGE = "save_language";
 
     public static void init(Context mContext) {
         if (instance == null) {
-            synchronized (LanguageUtil.class) {
+            synchronized (MultiLanguageUtil.class) {
                 if (instance == null) {
-                    instance = new LanguageUtil(mContext);
+                    instance = new MultiLanguageUtil(mContext);
                 }
             }
         }
     }
 
-    public static LanguageUtil getInstance() {
+    public static MultiLanguageUtil getInstance() {
         if (instance == null) {
-            throw new IllegalStateException("You must be init LanguageUtil first");
+            throw new IllegalStateException("You must be init MultiLanguageUtil first");
         }
         return instance;
     }
 
-    private LanguageUtil(Context context) {
+    private MultiLanguageUtil(Context context) {
         this.mContext = context;
     }
 
@@ -67,7 +67,7 @@ public class LanguageUtil {
      * @return
      */
     private Locale getLanguageLocale() {
-        int languageType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, 0);
+        int languageType = CommSharedUtil.getInstance(mContext).getInt(MultiLanguageUtil.SAVE_LANGUAGE, 0);
         if (languageType == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
             Locale sysType = getSysLocale();
             if (sysType.equals(Locale.ENGLISH)) {
@@ -113,13 +113,13 @@ public class LanguageUtil {
      * @param languageType
      */
     public void updateLanguage(int languageType) {
-        CommSharedUtil.getInstance(mContext).putInt(LanguageUtil.SAVE_LANGUAGE, languageType);
-        LanguageUtil.getInstance().setConfiguration();
+        CommSharedUtil.getInstance(mContext).putInt(MultiLanguageUtil.SAVE_LANGUAGE, languageType);
+        MultiLanguageUtil.getInstance().setConfiguration();
         EventBus.getDefault().post(new OnChangeLanguageEvent(languageType));
     }
 
     public String getLanguageName(Context context) {
-        int languageType = CommSharedUtil.getInstance(context).getInt(LanguageUtil.SAVE_LANGUAGE,LanguageType.LANGUAGE_FOLLOW_SYSTEM);
+        int languageType = CommSharedUtil.getInstance(context).getInt(MultiLanguageUtil.SAVE_LANGUAGE,LanguageType.LANGUAGE_FOLLOW_SYSTEM);
         if (languageType == LanguageType.LANGUAGE_EN) {
             return mContext.getString(R.string.setting_language_english);
         } else if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
@@ -135,7 +135,7 @@ public class LanguageUtil {
      * @return
      */
     public int getLanguageType() {
-        int languageType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_FOLLOW_SYSTEM);
+        int languageType = CommSharedUtil.getInstance(mContext).getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_FOLLOW_SYSTEM);
          if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
             return LanguageType.LANGUAGE_CHINESE_SIMPLIFIED;
         } else if (languageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {

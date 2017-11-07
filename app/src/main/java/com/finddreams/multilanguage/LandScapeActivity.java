@@ -1,5 +1,6 @@
 package com.finddreams.multilanguage;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 /**
@@ -14,4 +15,8 @@ public class LandScapeActivity extends BaseActivity {
         setTitle(R.string.app_name);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 }

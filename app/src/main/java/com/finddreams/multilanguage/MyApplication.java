@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-import com.finddreams.languagelib.LanguageUtil;
+import com.finddreams.languagelib.MultiLanguageUtil;
 
 /**
  * Created by lx on 17-10-26.
@@ -15,8 +15,8 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        LanguageUtil.init(this);
-        LanguageUtil.getInstance().setConfiguration();
+        MultiLanguageUtil.init(this);
+        MultiLanguageUtil.getInstance().setConfiguration();
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {
@@ -30,7 +30,7 @@ public class MyApplication extends Application{
 
             @Override
             public void onActivityResumed(Activity activity) {
-                LanguageUtil.getInstance().setConfiguration();
+                MultiLanguageUtil.getInstance().setConfiguration();
             }
 
             @Override
@@ -58,6 +58,6 @@ public class MyApplication extends Application{
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        LanguageUtil.getInstance().setConfiguration();
+        MultiLanguageUtil.getInstance().setConfiguration();
     }
 }
