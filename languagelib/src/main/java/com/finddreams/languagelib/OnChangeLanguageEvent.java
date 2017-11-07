@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.finddreams.languagelib;
 
 /**
  * Created by lx on 2017/5/2.

@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.finddreams.languagelib;
 
 
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.content.SharedPreferences.Editor;
 public class CommSharedUtil {
 
     private static final String SHARED_PATH = "app_info";
-    public static final String FLAG_SAVE_LANGUAGE = "save_language";
     private static CommSharedUtil helper;
     private SharedPreferences sharedPreferences;
 

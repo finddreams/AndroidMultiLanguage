@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">LanguageLib</string>
-    <string name="setting_language_followsystem">follow system</string>
+    <string name="setting_language_auto">跟隨系統</string>
 
 </resources>

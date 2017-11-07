@@ -8,19 +8,45 @@
     tools:context="com.finddreams.multilanguage.MainActivity">
 
     <TextView
+        android:id="@+id/tv_introduction"
         android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:lineSpacingExtra="5dp"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="@string/introduction" />
 
     <Button
         android:layout_marginTop="50dp"
         android:id="@+id/btn_openlandscape"
         android:layout_width="wrap_content"
         android:text="@string/open_landscape"
+        android:onClick="openLandScape"
+        android:layout_below="@id/tv_introduction"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btn_openwebview"
         android:layout_width="wrap_content"
         android:text="@string/open_webview"
+        android:layout_marginRight="50dp"
+        android:onClick="openWebView"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_introduction"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_openSeting"
+        android:layout_width="wrap_content"
+        android:text="@string/setting_language"
+        android:onClick="openSettingLanguage"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_introduction"
+        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_openOther"
+        android:layout_width="wrap_content"
+        android:text="@string/otheractivity"
+        android:onClick="openOther"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_introduction"
         android:layout_height="wrap_content" />
 </LinearLayout>

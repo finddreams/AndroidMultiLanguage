@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.finddreams.languagelib;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -21,11 +21,6 @@ public class LanguageUtil {
     private static final String TAG = "LanguageUtil";
     private static LanguageUtil sInstacne;
     private Context mContext;
-    public static final int LANGUAGE_FOLLOW_SYSTEM = 4; //跟随系统
-    public static final int LANGUAGE_NO_SET = 0; //没有设置语言
-    public static final int LANGUAGE_ENGLISH = 1;    //英文
-    public static final int LANGUAGE_SIMPLE_CHINISE = 2; //简体
-    public static final int LANGUAGE_TRADITIONAL_CHINESE = 3;  //繁体
     public static final String SAVE_LANGUAGE = "save_language";
 
     public static void init(Context mContext) {
@@ -49,8 +44,11 @@ public class LanguageUtil {
         this.mContext = context;
     }
 
+    /**
+     * 设置语言
+     */
     public void setConfiguration() {
-        Locale targetLocale = getTragetLocale();
+        Locale targetLocale = getLanguageLocale();
         Configuration configuration = mContext.getResources().getConfiguration();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLocale(targetLocale);
@@ -63,47 +61,35 @@ public class LanguageUtil {
     }
 
     /**
-     * 如果不是英文、简体中文、繁体中文，默认返回繁体中文
+     * 如果不是英文、简体中文、繁体中文，默认返回简体中文
      *
      * @return
      */
-    private Locale getTragetLocale() {
-        int userType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, 0);
-        int languageType = 0;
-        if (userType == LanguageUtil.LANGUAGE_NO_SET) {
+    private Locale getLanguageLocale() {
+        int languageType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, 0);
+        if (languageType == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
             Locale sysType = getSysLocale();
             if (sysType.equals(Locale.ENGLISH)) {
-                languageType = LANGUAGE_ENGLISH;
-                return Locale.TRADITIONAL_CHINESE;
-            } else if (sysType.equals(Locale.SIMPLIFIED_CHINESE)) {
-                languageType = LANGUAGE_SIMPLE_CHINISE;
-                return Locale.SIMPLIFIED_CHINESE;
+                return Locale.ENGLISH;
             } else if (sysType.equals(Locale.TRADITIONAL_CHINESE)) {
-                languageType = LANGUAGE_TRADITIONAL_CHINESE;
                 return Locale.TRADITIONAL_CHINESE;
             } else if (TextUtils.equals(sysType.getLanguage(), Locale.CHINA.getLanguage())) { //zh
                 if (TextUtils.equals(sysType.getCountry(), Locale.CHINA.getCountry())) {  //适配华为mate9  zh_CN_#Hans
-                    languageType = LANGUAGE_SIMPLE_CHINISE;
                     return Locale.SIMPLIFIED_CHINESE;
                 }
             } else {
-                languageType = LANGUAGE_TRADITIONAL_CHINESE;
-                return Locale.TRADITIONAL_CHINESE;
+                return Locale.SIMPLIFIED_CHINESE;
             }
-        } else if (userType == LanguageUtil.LANGUAGE_ENGLISH) {
-            languageType = LANGUAGE_ENGLISH;
+        } else if (languageType == LanguageType.LANGUAGE_EN) {
             return Locale.ENGLISH;
-        } else if (userType == LanguageUtil.LANGUAGE_SIMPLE_CHINISE) {
-            languageType = LANGUAGE_SIMPLE_CHINISE;
+        } else if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
             return Locale.SIMPLIFIED_CHINESE;
-        } else if (userType == LanguageUtil.LANGUAGE_TRADITIONAL_CHINESE) {
-            languageType = LANGUAGE_TRADITIONAL_CHINESE;
+        } else if (languageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {
             return Locale.TRADITIONAL_CHINESE;
         }
-        Log.e(TAG, "getTragetLocale" + userType + languageType);
+        Log.e(TAG, "getLanguageLocale" + languageType + languageType);
         getSystemLangue(getSysLocale());
-        CommSharedUtil.getInstance(mContext).putInt(LanguageUtil.SAVE_LANGUAGE, languageType);
-        return Locale.TRADITIONAL_CHINESE;
+        return Locale.SIMPLIFIED_CHINESE;
     }
 
     private String getSystemLangue(Locale locale) {
@@ -111,7 +97,7 @@ public class LanguageUtil {
 
     }
 
-    //6.0以上获取方式需要特殊处理一下
+    //7.0以上获取方式需要特殊处理一下
     public Locale getSysLocale() {
         if (Build.VERSION.SDK_INT < 24) {
             return mContext.getResources().getConfiguration().locale;
@@ -131,50 +117,32 @@ public class LanguageUtil {
         EventBus.getDefault().post(new OnChangeLanguageEvent(languageType));
     }
 
-    //    public String getLanguageName() {
-//        int languageType = CommSharedUtil.getInt(LanguageUtil.SAVE_LANGUAGE);
-//        if (languageType == LanguageType.ENGLISH) {
-//            return mContext.getString(R.string.settings_language_english);
-//        } else if (languageType == LanguageType.SIMPLE_CHINISE) {
-//            return mContext.getString(R.string.settings_language_simple_chinise);
-//        } else if (languageType == LanguageType.TRADITIONAL_CHINESE) {
-//            return mContext.getString(R.string.settings_language_traditional_chinise);
-//        }
-//
-//        return mContext.getString(R.string.settings_language_follow_system);
-//    }
-    public int getLanguageType() {
-        int userType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, 0);
-        if (userType == LanguageUtil.LANGUAGE_FOLLOW_SYSTEM) {  //跟随系统或者没有进行语言设置   都直接跟系统走!!!
-            Locale sysType = LanguageUtil.getInstance().getSysLocale();
-            if (sysType.equals(Locale.SIMPLIFIED_CHINESE)) {
-                return LANGUAGE_SIMPLE_CHINISE;
-            } else if (sysType.equals(Locale.TRADITIONAL_CHINESE)) {
-                return LANGUAGE_TRADITIONAL_CHINESE;
-            } else {
-                return LANGUAGE_TRADITIONAL_CHINESE;
-            }
-        } else if (userType == LanguageUtil.LANGUAGE_SIMPLE_CHINISE) {
-            return LANGUAGE_SIMPLE_CHINISE;
-        } else if (userType == LanguageUtil.LANGUAGE_TRADITIONAL_CHINESE) {
-            return LANGUAGE_TRADITIONAL_CHINESE;
-        } else if (userType == LanguageUtil.LANGUAGE_NO_SET) {
-            Locale sysType = getSysLocale();
-            if (sysType.equals(Locale.ENGLISH)) {
-                return LANGUAGE_TRADITIONAL_CHINESE;
-            } else if (sysType.equals(Locale.SIMPLIFIED_CHINESE)) {
-                return LANGUAGE_SIMPLE_CHINISE;
-            } else if (sysType.equals(Locale.TRADITIONAL_CHINESE)) {
-                return LANGUAGE_TRADITIONAL_CHINESE;
-            } else if (TextUtils.equals(sysType.getLanguage(), Locale.CHINA.getLanguage())) { //zh
-                if (TextUtils.equals(sysType.getCountry(), Locale.CHINA.getCountry())) {//cn
-                    return LANGUAGE_SIMPLE_CHINISE;
-                }
-            } else {
-                return LANGUAGE_TRADITIONAL_CHINESE;
-            }
+    public String getLanguageName(Context context) {
+        int languageType = CommSharedUtil.getInstance(context).getInt(LanguageUtil.SAVE_LANGUAGE,LanguageType.LANGUAGE_FOLLOW_SYSTEM);
+        if (languageType == LanguageType.LANGUAGE_EN) {
+            return mContext.getString(R.string.setting_language_english);
+        } else if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
+            return mContext.getString(R.string.setting_simplified_chinese);
+        } else if (languageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {
+            return mContext.getString(R.string.setting_traditional_chinese);
         }
-        Log.e(TAG, "getLanguageType" + userType);
-        return userType;
+        return mContext.getString(R.string.setting_language_auto);
+    }
+
+    /**
+     * 获取到用户保存的语言类型
+     * @return
+     */
+    public int getLanguageType() {
+        int languageType = CommSharedUtil.getInstance(mContext).getInt(LanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_FOLLOW_SYSTEM);
+         if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
+            return LanguageType.LANGUAGE_CHINESE_SIMPLIFIED;
+        } else if (languageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {
+            return LanguageType.LANGUAGE_CHINESE_TRADITIONAL;
+        } else if (languageType == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
+           return LanguageType.LANGUAGE_FOLLOW_SYSTEM;
+        }
+        Log.e(TAG, "getLanguageType" + languageType);
+        return languageType;
     }
 }

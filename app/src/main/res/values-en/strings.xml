@@ -3,5 +3,9 @@
     <string name="introduction">Hello, I finddreams, my blog address is: http://blog.csdn.net/finddreams, hope a lot of attention!</string>
     <string name="open_landscape">Open the screen page</string>
     <string name="open_webview">Open the WebView page</string>
+    <string name="setting_language_title">English</string>
+    <string name="setting_language">set language</string>
+    <string name="otheractivity">Open the other activity  to see if it is abnormal</string>
+    <string name="landscape">This is a landscape screen activity</string>
 
 </resources>
