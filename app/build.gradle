@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply from: 'tinkerpatch.gradle'
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -10,14 +10,43 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            storeFile file("iqdiirobin.keystore")
+            storePassword "iqdii_robin"
+            keyAlias "debug.keystore"
+            keyPassword "iqdii_robin"
+        }
+
+        release {
+            storeFile file("iqdiirobin.keystore")
+            storePassword "iqdii_robin"
+            keyAlias "debug.keystore"
+            keyPassword "iqdii_robin"
+        }
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
 
+android {
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -27,5 +56,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':languagelib')
     implementation 'org.greenrobot:eventbus:3.0.0'
-
+    compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.1")
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.finddreams.languagelib.OnChangeLanguageEvent;
 
@@ -14,10 +15,13 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends BaseActivity {
 
+    private Button btn_openwebview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btn_openwebview = findViewById(R.id.btn_openwebview);
         EventBus.getDefault().register(this);
     }
     public void openLandScape(View view){
@@ -36,6 +40,7 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onChangeLanguageEvent(OnChangeLanguageEvent event){
         Log.d("onchange","ChangeLanguage");
+        btn_openwebview.setText("ChangeLanguage");
     }
 
     @Override
