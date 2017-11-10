@@ -18,7 +18,7 @@ tinkerpatchSupport {
      你可以copy本示例中的proguardRules.pro和tinkerMultidexKeep.pro,
      需要你手动修改'tinker.sample.android.app'本示例的包名为你自己的包名, com.xxx前缀的包名不用修改
      **/
-    tinkerEnable = true
+    tinkerEnable = false
     reflectApplication = true
 
     autoBackupApkPath = "${bakPath}"

@@ -54,4 +54,10 @@ dependencies {
     implementation project(':languagelib')
     implementation 'org.greenrobot:eventbus:3.0.0'
     compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.1")
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.1.6'
+}
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+    }
 }

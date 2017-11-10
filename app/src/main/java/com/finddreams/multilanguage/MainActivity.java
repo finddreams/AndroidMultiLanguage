@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.finddreams.languagelib.LanguageUtil;
 import com.finddreams.languagelib.OnChangeLanguageEvent;
+import com.taobao.sophix.SophixManager;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.server.callback.ConfigRequestCallback;
 
@@ -25,8 +27,16 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LanguageUtil.init(this);
+        LanguageUtil.getInstance().setConfiguration();
         btn_openwebview = findViewById(R.id.btn_openwebview);
         EventBus.getDefault().register(this);
+//        initThinerPatch();
+        // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
+        SophixManager.getInstance().queryAndLoadNewPatch();
+    }
+
+    private void initThinerPatch() {
         TinkerPatch.with().fetchDynamicConfig(new ConfigRequestCallback() {
             @Override
             public void onSuccess(HashMap<String, String> hashMap) {
@@ -38,12 +48,13 @@ public class MainActivity extends BaseActivity {
         }, false);
         TinkerPatch.with().fetchPatchUpdate(true);
     }
+
     public void openLandScape(View view){
         startActivity(new Intent(this,LandScapeActivity.class));
 
     }
     public void openWebView(View view){
-//        int i=5/0;
+        int i=5/0;
         startActivity(new Intent(this,WebViewActivity.class));
     }
     public void openSettingLanguage(View view){

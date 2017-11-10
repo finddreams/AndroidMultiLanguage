@@ -2,10 +2,15 @@ package com.finddreams.multilanguage;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.finddreams.languagelib.LanguageUtil;
+import com.taobao.sophix.PatchStatus;
+import com.taobao.sophix.SophixManager;
+import com.taobao.sophix.listener.PatchLoadStatusListener;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
@@ -14,19 +19,19 @@ import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
  * Created by lx on 17-10-26.
  */
 
-public class MyApplication extends Application{
+public class MyApplication extends Application {
 
+    private static final String TAG = "find";
     private ApplicationLike tinkerApplicationLike;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        initTinker();
+//        initTinker();
         LanguageUtil.init(this);
         LanguageUtil.getInstance().setConfiguration();
         initLifeCycle();
     }
-
     private void initTinker() {
         // 我们可以从这里获得Tinker加载过程的信息
         tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();

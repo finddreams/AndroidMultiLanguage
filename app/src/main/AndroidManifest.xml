@@ -3,8 +3,11 @@
     package="com.finddreams.multilanguage">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
-        android:name=".MyApplication"
+        android:name=".SophixStubApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -29,6 +32,12 @@
             android:screenOrientation="landscape" />
         <activity android:name=".SetLanguageActivity" />
         <activity android:name=".OtherActivity"></activity>
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24688585-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="c8137293a75ae1bef50f010d90640a9d" />
     </application>
 
 </manifest>
