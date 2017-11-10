@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.finddreams.languagelib.OnChangeLanguageEvent;
+import com.tinkerpatch.sdk.TinkerPatch;
+import com.tinkerpatch.sdk.server.callback.ConfigRequestCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
 
 public class MainActivity extends BaseActivity {
 
@@ -23,12 +27,22 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         btn_openwebview = findViewById(R.id.btn_openwebview);
         EventBus.getDefault().register(this);
+        TinkerPatch.with().fetchDynamicConfig(new ConfigRequestCallback() {
+            @Override
+            public void onSuccess(HashMap<String, String> hashMap) {
+                Log.d("tag",hashMap.toString());
+            }
+            @Override
+            public void onFail(Exception e) {
+            }
+        }, false);
     }
     public void openLandScape(View view){
         startActivity(new Intent(this,LandScapeActivity.class));
 
     }
     public void openWebView(View view){
+//        int i=5/0;
         startActivity(new Intent(this,WebViewActivity.class));
     }
     public void openSettingLanguage(View view){
