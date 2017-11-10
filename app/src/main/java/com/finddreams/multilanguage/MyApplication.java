@@ -39,7 +39,6 @@ public class MyApplication extends Application{
 
         // 每隔3个小时(通过setFetchPatchIntervalByHours设置)去访问后台时候有更新,通过handler实现轮训的效果
         TinkerPatch.with().fetchPatchUpdateAndPollWithInterval();
-        TinkerPatch.with().fetchPatchUpdate(true);
     }
 
     private void initLifeCycle() {

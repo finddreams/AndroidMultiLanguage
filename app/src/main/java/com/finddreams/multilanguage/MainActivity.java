@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity {
             public void onFail(Exception e) {
             }
         }, false);
+        TinkerPatch.with().fetchPatchUpdate(true);
     }
     public void openLandScape(View view){
         startActivity(new Intent(this,LandScapeActivity.class));
