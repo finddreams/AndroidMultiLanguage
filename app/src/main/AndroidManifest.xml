@@ -34,10 +34,10 @@
         <activity android:name=".OtherActivity"></activity>
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
-            android:value="24688585-1" />
+            android:value="" />
         <meta-data
             android:name="com.taobao.android.hotfix.APPSECRET"
-            android:value="c8137293a75ae1bef50f010d90640a9d" />
+            android:value="" />
     </application>
 
 </manifest>
