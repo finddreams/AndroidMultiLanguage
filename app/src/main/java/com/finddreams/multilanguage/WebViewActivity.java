@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        setTitle(R.string.app_name);
         webview = findViewById(R.id.webview);
         progressbar = findViewById(R.id.progressbar);
         webview.loadUrl("http://blog.csdn.net/finddreams");
