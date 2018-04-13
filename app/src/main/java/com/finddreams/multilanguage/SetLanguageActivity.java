@@ -88,7 +88,7 @@ public class SetLanguageActivity extends BaseActivity implements View.OnClickLis
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         if (selectedLanguage == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
-            System.exit(0);
+//            System.exit(0);
         }
     }
 

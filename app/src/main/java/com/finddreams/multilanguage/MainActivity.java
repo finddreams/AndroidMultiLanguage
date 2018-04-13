@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.finddreams.languagelib.MultiLanguageUtil;
 import com.finddreams.languagelib.OnChangeLanguageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        MultiLanguageUtil.getInstance().setConfiguration();
         setContentView(R.layout.activity_main);
         setTitle(R.string.app_name);
         EventBus.getDefault().register(this);

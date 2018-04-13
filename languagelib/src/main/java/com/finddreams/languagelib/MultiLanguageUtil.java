@@ -1,9 +1,11 @@
 package com.finddreams.languagelib;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.LocaleList;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -56,9 +58,9 @@ public class MultiLanguageUtil {
         } else {
             configuration.locale = targetLocale;
         }
-        Resources resources = mContext.getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        resources.updateConfiguration(configuration, dm);//语言更换生效的代码!
+            Resources resources = mContext.getResources();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            resources.updateConfiguration(configuration, dm);//语言更换生效的代码!
     }
 
     /**
@@ -69,18 +71,8 @@ public class MultiLanguageUtil {
     private Locale getLanguageLocale() {
         int languageType = CommSharedUtil.getInstance(mContext).getInt(MultiLanguageUtil.SAVE_LANGUAGE, 0);
         if (languageType == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
-            Locale sysType = getSysLocale();
-            if (sysType.equals(Locale.ENGLISH)) {
-                return Locale.ENGLISH;
-            } else if (sysType.equals(Locale.TRADITIONAL_CHINESE)) {
-                return Locale.TRADITIONAL_CHINESE;
-            } else if (TextUtils.equals(sysType.getLanguage(), Locale.CHINA.getLanguage())) { //zh
-                if (TextUtils.equals(sysType.getCountry(), Locale.CHINA.getCountry())) {  //适配华为mate9  zh_CN_#Hans
-                    return Locale.SIMPLIFIED_CHINESE;
-                }
-            } else {
-                return Locale.SIMPLIFIED_CHINESE;
-            }
+            Locale sysLocale= getSysLocale();
+            return sysLocale;
         } else if (languageType == LanguageType.LANGUAGE_EN) {
             return Locale.ENGLISH;
         } else if (languageType == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
@@ -88,8 +80,8 @@ public class MultiLanguageUtil {
         } else if (languageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {
             return Locale.TRADITIONAL_CHINESE;
         }
-        Log.e(TAG, "getLanguageLocale" + languageType + languageType);
         getSystemLanguage(getSysLocale());
+        Log.e(TAG, "getLanguageLocale" + languageType + languageType);
         return Locale.SIMPLIFIED_CHINESE;
     }
 
@@ -98,13 +90,15 @@ public class MultiLanguageUtil {
 
     }
 
-    //7.0以上获取方式需要特殊处理一下
+    //以上获取方式需要特殊处理一下
     public Locale getSysLocale() {
-        if (Build.VERSION.SDK_INT < 24) {
-            return mContext.getResources().getConfiguration().locale;
+        Locale locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = LocaleList.getDefault().get(0);
         } else {
-            return mContext.getResources().getConfiguration().getLocales().get(0);
+            locale = Locale.getDefault();
         }
+        return locale;
     }
 
     /**
@@ -145,5 +139,23 @@ public class MultiLanguageUtil {
         }
         Log.e(TAG, "getLanguageType" + languageType);
         return languageType;
+    }
+
+    public static Context attachBaseContext(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return createConfigurationResources(context);
+        } else {
+            MultiLanguageUtil.getInstance().setConfiguration();
+            return context;
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    private static Context createConfigurationResources(Context context) {
+        Resources resources = context.getResources();
+        Configuration configuration = resources.getConfiguration();
+        Locale locale=getInstance().getLanguageLocale();
+        configuration.setLocale(locale);
+        return context.createConfigurationContext(configuration);
     }
 }
