@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Android多語言</string>
+    <string name="introduction">你好，我是尋夢，我的部落格地址是：http://blog.csdn.net/finddreams，希望大家多多關注！ </string>
+    <string name="open_landscape">打開橫屏頁面</string>
+    <string name="followsystem">跟隨系統</string>
+    <string name="open_webview">打開webview頁面</string>
+    <string name="setting_language_title">多語言設定</string>
+    <string name="setting_language">多語言設定</string>
+    <string name="otheractivity">打開二級頁面測試是否异常</string>
+    <string name="landscape">這是橫屏頁面</string>
+
+</resources>
