@@ -7,14 +7,6 @@
     android:orientation="vertical"
     tools:context="com.finddreams.multilanguage.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_introduction"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp"
-        android:lineSpacingExtra="5dp"
-        android:layout_height="wrap_content"
-        android:text="@string/introduction" />
-
     <Button
         android:layout_marginTop="50dp"
         android:id="@+id/btn_openlandscape"

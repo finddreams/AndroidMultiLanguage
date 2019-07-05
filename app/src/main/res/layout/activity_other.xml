@@ -12,5 +12,5 @@
         android:lineSpacingExtra="2dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:text="@string/introduction" />
+        android:text="test" />
 </RelativeLayout>

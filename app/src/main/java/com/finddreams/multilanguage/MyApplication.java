@@ -16,53 +16,28 @@ import com.finddreams.languagelib.MultiLanguageUtil;
  */
 
 public class MyApplication extends Application{
+
+    private Application mApplication;
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        MultiLanguageUtil.saveSystemCurrentLanguage(base);
+        super.attachBaseContext(MultiLanguageUtil.attachBaseContext(base));
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        MultiLanguageUtil.init(this);
-//        MultiLanguageUtil.getInstance().setConfiguration();
-        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
-            @Override
-            public void onActivityCreated(Activity activity, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onActivityStarted(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityResumed(Activity activity) {
-//                MultiLanguageUtil.getInstance().setConfiguration();
-            }
-
-            @Override
-            public void onActivityPaused(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityStopped(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onActivityDestroyed(Activity activity) {
-
-            }
-        });
+        mApplication = this;
     }
+
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-//        MultiLanguageUtil.getInstance().setConfiguration();
+        MultiLanguageUtil.getInstance(this).setConfiguration();
     }
 
 
