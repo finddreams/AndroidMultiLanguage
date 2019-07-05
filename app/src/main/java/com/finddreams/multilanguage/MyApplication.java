@@ -37,7 +37,7 @@ public class MyApplication extends Application{
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        MultiLanguageUtil.getInstance(this).setConfiguration();
+        MultiLanguageUtil.getInstance().setConfiguration(this);
     }
 
 
