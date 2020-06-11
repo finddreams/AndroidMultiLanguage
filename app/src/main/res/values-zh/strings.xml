@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Android多语言</string>
+    <string name="open_landscape">打开横屏页面</string>
+    <string name="open_webview">打开webview页面</string>
+    <string name="setting_language_title">多语言设置</string>
+    <string name="setting_language">多语言设置</string>
+    <string name="otheractivity">打开二级页面测试是否异常</string>
+    <string name="landscape">这是横屏页面</string>
+    <string name="service_create">已创建service</string>
+    <string name="test">测试</string>
+    <string name="open_tool">打开工具类</string>
+    <string name="open_common">打开公共类</string>
+</resources>

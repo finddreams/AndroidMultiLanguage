@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import com.finddreams.base.BaseActivity;
+import com.finddreams.multilanguage.R;
 
 /**
  * webview在7.0上会重置语言

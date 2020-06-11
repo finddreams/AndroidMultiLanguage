@@ -1,13 +1,15 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-import com.finddreams.languagelib.MultiLanguageUtil;
+import com.baidu.common.CommonMainActivity;
+import com.baidu.tool.ToolsMainActivity;
+import com.finddreams.base.BaseActivity;
 import com.finddreams.languagelib.OnChangeLanguageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -16,18 +18,37 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends BaseActivity {
 
+    Button toolBtn, commonBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(R.string.app_name);
         EventBus.getDefault().register(this);
+
+        toolBtn = findViewById(R.id.btn_openTool);
+        commonBtn = findViewById(R.id.btn_openCommon);
+
+        toolBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ToolsMainActivity.class));
+            }
+        });
+        commonBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CommonMainActivity.class));
+
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(getApplicationContext(), getString(R.string.service_create), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.service_create), Toast.LENGTH_SHORT).show();
     }
 
     public void openLandScape(View view) {
@@ -45,6 +66,14 @@ public class MainActivity extends BaseActivity {
 
     public void openOther(View view) {
         startActivity(new Intent(this, OtherActivity.class));
+    }
+
+    public void openTool(View view) {
+        startActivity(new Intent(this, ToolsMainActivity.class));
+    }
+
+    public void openCommon(View view) {
+        startActivity(new Intent(this, CommonMainActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

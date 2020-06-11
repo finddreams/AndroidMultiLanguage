@@ -1,7 +1,10 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+
+import com.finddreams.base.BaseActivity;
+import com.finddreams.multilanguage.R;
 
 /**
  * 横屏会重置语言

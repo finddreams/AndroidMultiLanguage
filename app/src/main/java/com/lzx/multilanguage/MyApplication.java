@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.finddreams.languagelib.MultiLanguageUtil;
 
@@ -18,12 +19,16 @@ import com.finddreams.languagelib.MultiLanguageUtil;
 public class MyApplication extends Application{
 
     private Application mApplication;
+    protected String TAG = getClass().getSimpleName();
 
 
     @Override
     protected void attachBaseContext(Context base) {
-        MultiLanguageUtil.saveSystemCurrentLanguage(base);
-        super.attachBaseContext(MultiLanguageUtil.attachBaseContext(base));
+        Log.e(TAG, "attachBaseContext");
+        MultiLanguageUtil.getInstance().saveSystemCurrentLanguage(base);
+        super.attachBaseContext(base);
+        //app刚启动getApplicationContext()为空
+        MultiLanguageUtil.getInstance().setConfiguration(getApplicationContext());
     }
 
     @Override
@@ -37,7 +42,9 @@ public class MyApplication extends Application{
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        MultiLanguageUtil.getInstance().setConfiguration(this);
+        //app刚启动不一定调用onConfigurationChanged
+        Log.e(TAG, "onConfigurationChanged");
+        MultiLanguageUtil.getInstance().setConfiguration(getApplicationContext());
     }
 
 

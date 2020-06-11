@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.finddreams.base.BaseActivity;
 import com.finddreams.languagelib.LanguageType;
 import com.finddreams.languagelib.MultiLanguageUtil;
+import com.finddreams.multilanguage.R;
 
 /**
  * 设置语言页面

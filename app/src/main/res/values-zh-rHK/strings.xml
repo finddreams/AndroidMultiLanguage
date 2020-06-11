@@ -8,4 +8,5 @@
     <string name="otheractivity">打開二級頁面測試是否异常</string>
     <string name="landscape">這是橫屏頁面</string>
     <string name="service_create">已創建service</string>
+    <string name="test">測試</string>
 </resources>
