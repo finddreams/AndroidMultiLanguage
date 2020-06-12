@@ -1,5 +1,27 @@
 # AndroidMultiLanguage
 APP实现多语言（国际化）过程，兼容Android 8.0，解决了原项目切换过程中的语言切换不生效问题
 
-参考代码：
-https://github.com/MichaelJokAr/MultiLanguages
+# AndroidX切换多语言失效解决方案
+
+参考：https://blog.csdn.net/KingsleyCheng/article/details/104862591
+
+主要是在基类里面添加以下方法：
+
+@Override
+public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+    // 兼容androidX在部分手机切换语言失败问题
+    if (overrideConfiguration != null) {
+        int uiMode = overrideConfiguration.uiMode;
+        overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+        overrideConfiguration.uiMode = uiMode;
+    }
+    super.applyOverrideConfiguration(overrideConfiguration);
+}
+
+
+#版本说明
+1.1
+支持Androidx
+
+1.0
+优化代码

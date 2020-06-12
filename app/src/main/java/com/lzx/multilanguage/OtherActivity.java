@@ -1,11 +1,9 @@
 package com.lzx.multilanguage;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.finddreams.base.BaseActivity;
-import com.finddreams.multilanguage.R;
 
 /**
  * 测试语言是否被重置

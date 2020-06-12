@@ -1,17 +1,14 @@
 package com.lzx.multilanguage;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.finddreams.base.BaseActivity;
-import com.finddreams.multilanguage.R;
 
 /**
  * webview在7.0上会重置语言
@@ -28,7 +25,7 @@ import com.finddreams.multilanguage.R;
         setTitle(R.string.app_name);
         webview = findViewById(R.id.webview);
         progressbar = findViewById(R.id.progressbar);
-        webview.loadUrl("http://blog.csdn.net/finddreams");
+        webview.loadUrl("http://blog.csdn.net/jdsjlzx");
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

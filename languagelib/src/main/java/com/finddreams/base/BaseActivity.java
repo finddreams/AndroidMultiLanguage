@@ -2,7 +2,7 @@ package com.finddreams.base;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 import com.finddreams.languagelib.MultiLanguageUtil;
