@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.finddreams.multilanguage">
+    package="com.lzx.multilanguage">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -28,7 +28,15 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape" />
         <activity android:name=".SetLanguageActivity" />
-        <activity android:name=".OtherActivity"></activity>
+        <activity android:name=".OtherActivity" />
+
+        <receiver
+            android:name="com.lzx.receiver.LanguageReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

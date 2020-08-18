@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">Android多语言</string>
-    <string name="introduction">你好，我是寻梦,我的博客地址是：http://blog.csdn.net/finddreams,希望大家多多关注！</string>
-    <string name="open_landscape">打开横屏页面</string>
-    <string name="open_webview">打开webview页面</string>
-    <string name="setting_language_title">多语言设置</string>
-    <string name="setting_language">多语言设置</string>
-    <string name="otheractivity">打开二级页面测试是否异常</string>
-    <string name="landscape">这是横屏页面</string>
+    <string name="app_name">Android MultiLanguage</string>
+    <string name="open_landscape">Open the screen page</string>
+    <string name="open_webview">Open the WebView page</string>
+    <string name="setting_language_title">English</string>
+    <string name="setting_language">set language</string>
+    <string name="otheractivity">Open the other activity  to see if it is abnormal</string>
+    <string name="landscape">This is a landscape screen activity</string>
+    <string name="service_create">created service</string>
+    <string name="test">test</string>
+    <string name="open_tool">open tools</string>
+    <string name="open_common">open common</string>
+
 </resources>
