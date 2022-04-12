@@ -1,1 +1,3 @@
+include ':common'
+include ':tool'
 include ':app', ':languagelib'

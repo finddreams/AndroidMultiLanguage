@@ -4,16 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.finddreams.multilanguage.MainActivity">
-
-    <TextView
-        android:id="@+id/tv_introduction"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp"
-        android:lineSpacingExtra="5dp"
-        android:layout_height="wrap_content"
-        android:text="@string/introduction" />
+    android:orientation="vertical">
 
     <Button
         android:layout_marginTop="50dp"
@@ -49,4 +40,24 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/tv_introduction"
         android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_openTool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_tool"
+            />
+
+        <Button
+            android:id="@+id/btn_openCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_common"
+            />
+    </LinearLayout>
 </LinearLayout>

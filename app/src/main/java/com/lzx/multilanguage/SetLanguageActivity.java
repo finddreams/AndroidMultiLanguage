@@ -1,4 +1,4 @@
-package com.finddreams.multilanguage;
+package com.lzx.multilanguage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.finddreams.base.BaseActivity;
 import com.finddreams.languagelib.LanguageType;
 import com.finddreams.languagelib.MultiLanguageUtil;
 
@@ -45,7 +46,7 @@ public class SetLanguageActivity extends BaseActivity implements View.OnClickLis
         rl_simplified_chinese.setOnClickListener(this);
         rl_traditional_chinese.setOnClickListener(this);
         rl_english.setOnClickListener(this);
-        savedLanguageType = MultiLanguageUtil.getInstance().getLanguageType();
+        savedLanguageType = MultiLanguageUtil.getInstance().getLanguageType(this);
         if (savedLanguageType == LanguageType.LANGUAGE_FOLLOW_SYSTEM) {
             setFollowSytemVisible();
         } else if (savedLanguageType == LanguageType.LANGUAGE_CHINESE_TRADITIONAL) {
@@ -83,7 +84,7 @@ public class SetLanguageActivity extends BaseActivity implements View.OnClickLis
                 selectedLanguage = LanguageType.LANGUAGE_EN;
                 break;
         }
-        MultiLanguageUtil.getInstance().updateLanguage(selectedLanguage);
+        MultiLanguageUtil.getInstance().updateLanguage(this,selectedLanguage);
         Intent intent = new Intent(SetLanguageActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
