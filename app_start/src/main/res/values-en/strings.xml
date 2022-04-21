@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Android MultiLanguage</string>
+    <string name="open_landscape">Open the screen page</string>
+    <string name="open_webview">Open the WebView page</string>
+    <string name="setting_language_title">English</string>
+    <string name="setting_language">set language</string>
+    <string name="otheractivity">Open the other activity  to see if it is abnormal</string>
+    <string name="landscape">This is a landscape screen activity</string>
+    <string name="service_create">created service</string>
+    <string name="test">test</string>
+    <string name="open_tool">open tools</string>
+    <string name="open_common">open common</string>
+</resources>

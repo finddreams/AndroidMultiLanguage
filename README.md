@@ -3,7 +3,6 @@ APP实现多语言（国际化）过程，兼容Android 7.0、8.0，解决了原
 
 # AndroidX切换多语言失效解决方案
 
-参考：https://blog.csdn.net/KingsleyCheng/article/details/104862591
 
 主要是在基类里面添加以下方法：
 
@@ -22,22 +21,3 @@ public void applyOverrideConfiguration(Configuration overrideConfiguration) {
 }
 
 ```
-
-# 版本说明
-
-**1.1**
-
-支持Androidx
-
-**1.0**
-
-# 版本说明
-
-**1.1
-
-支持Androidx
-
-
-**1.0
-
-优化代码

@@ -149,12 +149,8 @@ public class MultiLanguageUtil {
         Locale targetLocale = getLanguageLocale(appContext);
         Locale.setDefault(targetLocale);
         Configuration configuration = appContext.getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(targetLocale);
-            context.createConfigurationContext(configuration);
-        } else {
-            configuration.locale = targetLocale;
-        }
+        configuration.setLocale(targetLocale);
+        context.createConfigurationContext(configuration);
         Resources resources = appContext.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         resources.updateConfiguration(configuration, dm);//语言更换生效的代码!
